@@ -16,4 +16,10 @@ while True:
     if flag==0:
         break
 
-print(questionAnswer)
+print("Proceed to the game as a \n1) Solo Player\n2)Multiplayer-(2)")
+try:
+    player = int(input())
+except:
+    print("You have provided wrong type of input. Terminating the game.")
+else:
+    print(player)
