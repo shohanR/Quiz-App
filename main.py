@@ -6,7 +6,7 @@ while True:
     question = input("Enter your question: ").strip()
     question = question.capitalize()
     # handling repeated question
-    if question in questionAnswer:
+    if question in questionAnswer.keys():
         print("This question has already been given.\nWould you like to continue adding question? If yes, enter 1. Otherwise enter 0.")
         flag = int(input())
     
@@ -55,10 +55,11 @@ while True:
             flag = 0
             while flag!=player:
                 temp = input(f"Enter the user name of player{flag+1}: ").strip()
+                temp = temp.lower()
                 if temp in playerDetails:
                     print("Player is already present. Try again!")
                 else:
                     playerDetails[temp] = None
                     flag += 1
-            print(playerDetails)
+            print("Proceeding to the game...")
             break
