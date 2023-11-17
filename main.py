@@ -3,6 +3,7 @@ flag = 1
 
 while True:
     question = input("Enter your question: ")
+    question = question.capitalize()
     if question in questionAnswer:
         print("This question has already been given.\nWould you like to continue adding question? If yes, enter 1. Otherwise enter 0.")
         flag = int(input())
