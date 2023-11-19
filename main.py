@@ -63,6 +63,8 @@ while True:
         if player==0:
             print("Terminating the game...")
             break
+        elif player<0:
+            print("Wrong input! Please enter only 1, 2, or 0!")
         elif player>2:
             print("Please enter only 1, 2, or 0!")
             pass            
