@@ -63,21 +63,49 @@ while True:
         if player==0:
             print("Terminating the game...")
             break
-        elif player<0:
-            print("Wrong input! Please enter only 1, 2, or 0!")
-        elif player>2:
-            print("Please enter only 1, 2, or 0!")
-            pass            
+        elif player<0 or player>2:
+            print("Wrong input! Please enter only 1, 2, or 0!")          
         else:
+            flag = 1
             playerDetails = dict()
-            flag = 0
-            while flag!=player:
-                temp = input(f"Enter the user name of player{flag+1}: ").strip()
-                temp = temp.lower()
-                if temp in playerDetails:
+            temp = 0
+            while temp!=player:
+                playerName = input(f"Enter the user name of player{temp+1}: ").strip()
+                playerName = playerName.lower()
+                if playerName in playerDetails:
                     print("Player is already present. Try again!")
                 else:
-                    playerDetails[temp] = None
-                    flag += 1
+                    playerDetails[playerName] = None
+                    temp += 1
             print("Proceeding to the game...")
             break
+
+if flag!=0:
+    print("Inside the game")
+else:
+    print("Game End")
+
+# flag = 1
+# while flag!=0:
+#     if len(playerDetails.keys())==2:
+#         print("Who will play the game first? Enter user name of the player: ")
+#         temp = input()
+#         if temp not in playerDetails.keys():
+#             print("username not found! To try again enter 1, otherwise, enter 0 to terminate the game: ")
+#             while True:
+#                 try:
+#                     flag = int(input())
+#                 except:
+#                     print("Wrong input type. Try again!")
+#                 else:
+#                     if flag>1:
+#                         print("Please enter either 1, or, 0!")
+#                     else:
+#                         break
+            
+#         else:
+#             continue
+#         if 
+#     else:
+#         print("question")
+
