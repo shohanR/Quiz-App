@@ -1,8 +1,10 @@
+import random
+
 # dictionary to store Q/A
 questionAnswer = dict()
 flag = 1
 # taking Q/A until user wants to proceed to the game
-while flag!=0:
+while flag==1:
     temp=0
     question = input("Enter your question: ").strip()
     question = question.capitalize()
@@ -75,37 +77,45 @@ while True:
                 if playerName in playerDetails:
                     print("Player is already present. Try again!")
                 else:
-                    playerDetails[playerName] = None
+                    playerDetails[playerName] = 0
                     temp += 1
             print("Proceeding to the game...")
             break
 
-if flag!=0:
-    print("Inside the game")
+if flag==0:
+    print("\n!---------Game End!---------")
 else:
-    print("Game End")
+    while flag==1:
+        if len(playerDetails.keys())==2:
+            print("Who will play the game first?")
+            temp = input("Username: ").strip()
+            if temp not in playerDetails.keys():
+                print("Username not found! To try again enter 1, otherwise enter 0 to terminate the game: ")
+                while True:
+                    try:
+                        flag = int(input())
+                    except:
+                        print("Wrong input! Please enter 1, or 0: ")
+                    else:
+                        if flag<0 or flag>1:
+                            print("Please enter 1, or 0 only! ")
+                        else:
+                            break
+        if flag==0:
+            break
+        ques = random.choice(list(questionAnswer.keys()))
+        print(ques)
+        ans = input("Answer: ").strip()
+        
+        if questionAnswer[ques]==ans:
+            print(f"Correct answer! 5 points to {temp}")
+            playerDetails[temp] = playerDetails[temp] + 5
+        else:
+            print("Wrong answer!")
+        
+        
 
-# flag = 1
-# while flag!=0:
-#     if len(playerDetails.keys())==2:
-#         print("Who will play the game first? Enter user name of the player: ")
-#         temp = input()
-#         if temp not in playerDetails.keys():
-#             print("username not found! To try again enter 1, otherwise, enter 0 to terminate the game: ")
-#             while True:
-#                 try:
-#                     flag = int(input())
-#                 except:
-#                     print("Wrong input type. Try again!")
-#                 else:
-#                     if flag>1:
-#                         print("Please enter either 1, or, 0!")
-#                     else:
-#                         break
-            
-#         else:
-#             continue
-#         if 
-#     else:
-#         print("question")
+
+        
+
 
