@@ -1,8 +1,10 @@
+import random
+
 # dictionary to store Q/A
 questionAnswer = dict()
 flag = 1
 # taking Q/A until user wants to proceed to the game
-while flag!=0:
+while flag==1:
     temp=0
     question = input("Enter your question: ").strip()
     question = question.capitalize()
@@ -63,19 +65,73 @@ while True:
         if player==0:
             print("Terminating the game...")
             break
-        elif player>2:
-            print("Please enter only 1, 2, or 0!")
-            pass            
+        elif player<0 or player>2:
+            print("Wrong input! Please enter only 1, 2, or 0!")          
         else:
+            flag = 1
             playerDetails = dict()
-            flag = 0
-            while flag!=player:
-                temp = input(f"Enter the user name of player{flag+1}: ").strip()
-                temp = temp.lower()
-                if temp in playerDetails:
+            temp = 0
+            while temp!=player:
+                playerName = input(f"Enter the user name of player{temp+1}: ").strip()
+                playerName = playerName.lower()
+                if playerName in playerDetails:
                     print("Player is already present. Try again!")
                 else:
-                    playerDetails[temp] = None
-                    flag += 1
+                    playerDetails[playerName] = 0
+                    temp += 1
             print("Proceeding to the game...")
             break
+
+if flag==0:
+    print("\n!---------Game End!---------")
+else:
+    while flag==1:
+        if len(playerDetails.keys())==2:
+            print("Who will play the game first?")
+            temp = input("Username: ").strip()
+            if temp not in playerDetails.keys():
+                print("Username not found! To try again enter 1, otherwise enter 0 to terminate the game: ")
+                while True:
+                    try:
+                        flag = int(input())
+                    except:
+                        print("Wrong input! Please enter 1, or 0: ")
+                    else:
+                        if flag<0 or flag>1:
+                            print("Please enter 1, or 0 only! ")
+                        else:
+                            break
+        if flag==0:
+            break
+        ques = random.choice(list(questionAnswer.keys()))
+        print(ques)
+        ans = input("Answer: ").strip()
+        
+        if questionAnswer[ques]==ans:
+            print(f"Correct answer! 5 points to {temp}")
+            playerDetails[temp] = playerDetails[temp] + 5
+        else:
+            print("Wrong answer!")
+        
+        print("To continue the game, enter 1. Enter 0 to terminate the game! ")
+        while True:
+            try:
+                flag = int(input())
+            except:
+                print("Wrong input! Please enter 1, or 0: ")
+            else:
+                if flag<0 or flag>1:
+                    print("Please enter 1, or 0 only! ")
+                else:
+                    break
+userName = list(playerDetails.keys())
+print("Here is the result: ")
+if len(playerDetails.keys())==2:
+    print(f"{userName[0]} got {playerDetails[userName[0]]} points\n and {userName[1]} got {playerDetails[userName[1]]} points")
+else:
+    print(f"{userName[0]} got {playerDetails[userName[0]]} points")
+
+if playerDetails[userName[0]]>playerDetails[userName[1]]:
+    print(f"The winner is {userName[0]}")
+else:
+    print(f"The winner is {userName[1]}")
