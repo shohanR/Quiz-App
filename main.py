@@ -1,3 +1,4 @@
+from result import Result
 import random
 
 # dictionary to store Q/A
@@ -101,6 +102,8 @@ else:
                             print("Please enter 1, or 0 only! ")
                         else:
                             break
+        else:
+            temp = playerName
         if flag==0:
             break
         ques = random.choice(list(questionAnswer.keys()))
@@ -124,14 +127,7 @@ else:
                     print("Please enter 1, or 0 only! ")
                 else:
                     break
-userName = list(playerDetails.keys())
-print("Here is the result: ")
-if len(playerDetails.keys())==2:
-    print(f"{userName[0]} got {playerDetails[userName[0]]} points\n and {userName[1]} got {playerDetails[userName[1]]} points")
-else:
-    print(f"{userName[0]} got {playerDetails[userName[0]]} points")
 
-if playerDetails[userName[0]]>playerDetails[userName[1]]:
-    print(f"The winner is {userName[0]}")
-else:
-    print(f"The winner is {userName[1]}")
+print("Here is the result: ")
+result = Result(playerDetails)
+result.scoreInfo()
